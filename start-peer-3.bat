@@ -1,3 +1,3 @@
 @echo off
-geth --datadir data-3 --bootnodes "enode://0e2b62853c5deb52d52d354d1c8bbbe31b6ea493455a97c9ab0c5eb628310e89f477c5de874e3cbcf970e4f47334c7adc7485a8625c26a136923e95990cd64fe@192.168.1.207:30303" --ipcpath geth-3.ipc --networkid 15 --port 30307 console
+geth --datadir data-3 --bootnodes "enode://7ce91e57ab61f7b4d9816ddd0f9f07b013c2d2f21c11b35d049123dc1c43091556372ee95383fd9b2a0c72534f6989cfad46358d4bbfc00e6dbef07c4d414263@192.168.1.207:30305" --ipcpath geth-3.ipc --networkid 15 --port 30307 console
 pause
