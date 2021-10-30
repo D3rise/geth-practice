@@ -1,1 +1,4 @@
-data-*/**
+data-*
+
+web3-test/dist
+web3-test/node_modules

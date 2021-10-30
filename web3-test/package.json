@@ -1,0 +1,15 @@
+{
+  "name": "web3-test",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsc && node ."
+  },
+  "devDependencies": {
+    "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "web3": "^1.6.0"
+  }
+}
