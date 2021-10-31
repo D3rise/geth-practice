@@ -24,8 +24,12 @@ async function main() {
 
   // ===========
   console.log(
-    `current user balance: ${web3.utils.fromWei(
+    `current user1, user2, contract balance: ${web3.utils.fromWei(
       await web3.eth.getBalance(web3.defaultAccount)
+    )}, ${web3.utils.fromWei(
+      await web3.eth.getBalance(user2)
+    )}, ${web3.utils.fromWei(
+      await web3.eth.getBalance(contract.options.address)
     )}`
   );
   // ===========
@@ -34,16 +38,20 @@ async function main() {
     .deposit()
     .send({
       from: web3.defaultAccount,
-      value: web3.utils.toWei("100", "ether"),
+      value: web3.utils.toWei("2000", "ether"),
     })
     .on("receipt", () => {
-      console.log("Done transaction (deposit)");
+      console.log("Done transaction (deposit #1)");
     });
 
   // ===========
   console.log(
-    `current user balance: ${web3.utils.fromWei(
+    `current user1, user2, contract balance: ${web3.utils.fromWei(
       await web3.eth.getBalance(web3.defaultAccount)
+    )}, ${web3.utils.fromWei(
+      await web3.eth.getBalance(user2)
+    )}, ${web3.utils.fromWei(
+      await web3.eth.getBalance(contract.options.address)
     )}`
   );
   // ===========
@@ -51,12 +59,70 @@ async function main() {
   await contract.methods
     .withdraw()
     .send({ from: web3.defaultAccount })
-    .on("receipt", () => console.log("Done transaction (withdraw)"));
+    .on("receipt", () => console.log("Done transaction (withdraw #1)"));
 
   // ===========
   console.log(
-    `current user balance: ${web3.utils.fromWei(
+    `current user1, user2, contract balance: ${web3.utils.fromWei(
       await web3.eth.getBalance(web3.defaultAccount)
+    )}, ${web3.utils.fromWei(
+      await web3.eth.getBalance(user2)
+    )}, ${web3.utils.fromWei(
+      await web3.eth.getBalance(contract.options.address)
+    )}`
+  );
+  // ===========
+
+  await contract.methods
+    .deposit()
+    .send({
+      from: web3.defaultAccount,
+      value: web3.utils.toWei("1000", "ether"),
+    })
+    .on("receipt", () => console.log("Done transaction (deposit #2)"));
+
+  // ===========
+  console.log(
+    `current user1, user2, contract balance: ${web3.utils.fromWei(
+      await web3.eth.getBalance(web3.defaultAccount)
+    )}, ${web3.utils.fromWei(
+      await web3.eth.getBalance(user2)
+    )}, ${web3.utils.fromWei(
+      await web3.eth.getBalance(contract.options.address)
+    )}`
+  );
+  // ===========
+
+  await contract.methods
+    .transfer(user2, web3.utils.toWei("500", "ether"))
+    .send({ from: web3.defaultAccount })
+    .on("receipt", () => console.log("Done transaction (transfer)"));
+
+  // ===========
+  console.log(
+    `current user1, user2, contract balance: ${web3.utils.fromWei(
+      await web3.eth.getBalance(web3.defaultAccount)
+    )}, ${web3.utils.fromWei(
+      await web3.eth.getBalance(user2)
+    )}, ${web3.utils.fromWei(
+      await web3.eth.getBalance(contract.options.address)
+    )}`
+  );
+  // ===========
+
+  await contract.methods
+    .withdraw()
+    .send({ from: web3.defaultAccount })
+    .on("receipt", () => console.log("Done transaction (withdraw #2)"));
+
+  // ===========
+  console.log(
+    `current user1, user2, contract balance: ${web3.utils.fromWei(
+      await web3.eth.getBalance(web3.defaultAccount)
+    )}, ${web3.utils.fromWei(
+      await web3.eth.getBalance(user2)
+    )}, ${web3.utils.fromWei(
+      await web3.eth.getBalance(contract.options.address)
     )}`
   );
   // ===========

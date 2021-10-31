@@ -9,21 +9,22 @@ contract Payable {
         owner = payable(msg.sender);
     }
 
-    function deposit() public payable {
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Only owner can use this method");
+        _;
+    }
+
+    function deposit() public payable onlyOwner {
         emit Received(msg.value);
     }
 
-    function getBalance() public view returns (uint256) {
-        return address(this).balance;
-    }
-
-    function withdraw() public {
+    function withdraw() public onlyOwner {
         uint256 amount = address(this).balance;
 
         require(owner.send(amount), "Failed to send Ether");
     }
 
-    function transfer(address payable _to, uint256 _amount) public {
+    function transfer(address payable _to, uint256 _amount) public onlyOwner {
         uint256 amount = address(this).balance;
         require(_amount <= amount, "Not enough Ether");
 
