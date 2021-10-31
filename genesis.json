@@ -8,7 +8,7 @@
     "eip160Block": 0,
     "byzantiumBlock": 0,
     "constantinopleBlock": 0,
-    "istanbulBlock": 40000,
+    "istanbulBlock": 0,
     "petersburgBlock": 0,
     "ethash": {}
   },
